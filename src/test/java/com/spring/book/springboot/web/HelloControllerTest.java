@@ -13,8 +13,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@WebMvcTest
+@ExtendWith(SpringExtension.class) // JUnit 외에 다른 실행자를 실행
+@WebMvcTest // Controller 기능을 테스트할 수 있다. (외부에서 접속하는 기능들)
 public class HelloControllerTest {
 
   @Autowired
@@ -34,9 +34,8 @@ public class HelloControllerTest {
     String name = "hello";
     int amount = 1000;
 
-    mvc.perform(get("/hello/dto")
-        .param("name", name)
-        .param("amount", String.valueOf(amount)))
+    mvc.perform(get("/hello/dto").param("name", name)
+            .param("amount", String.valueOf(amount)))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.name", is(name)))
         .andExpect(jsonPath("$.amount", is(amount)));
