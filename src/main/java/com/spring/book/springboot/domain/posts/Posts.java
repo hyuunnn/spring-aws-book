@@ -1,6 +1,5 @@
 package com.spring.book.springboot.domain.posts;
 
-import com.fasterxml.jackson.databind.ser.Serializers.Base;
 import com.spring.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
