@@ -26,12 +26,15 @@ public class PostsService {
         .getId();
   }
 
+  // JPA의 영속성 컨텍스트 때문에 별도의 update 쿼리 없이 DB 데이터를 수정할 수 있다. (PostsService의 save, findById는 Spring Data JPA에 구현된 메서드를 호출하는데, update는 단순히 객체의 필드 값을 변경한다.)
+  // JPA의 EntityManager가 활성화된 상태로 트랜잭션 안에서 DB 데이터를 가져오면 영속성 컨텍스트가 유지된 상태이다. (Spring Data JPA는 기본 옵션으로 활성화)
+  // 그래서 객체의 값만 변경하면 트랜잭션이 끝나는 시점에 자동으로 변경분을 반영한다. (더티 체킹)
   @Transactional
   public Long update(Long id, PostsUpdateRequestDto requestDto) {
     Posts posts = postsRepository.findById(id)
         .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
     posts.update(requestDto.getTitle(),
-        requestDto.getContent()); // 객체의 값만 변경하면 트랜잭션이 끝나는 시점에 자동으로 변경분을 반영한다. (더티 체킹)
+        requestDto.getContent());
     return id;
   }
 
