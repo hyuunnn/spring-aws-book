@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 // 그렇기 때문에 domain 패키지에서 함께 관리한다.
 public interface PostsRepository extends JpaRepository<Posts, Long> {
 
-  @Query("SELECT p FROM Posts p ORDER BY p.id DESC") // Querydsl
+  @Query("SELECT p FROM Posts p ORDER BY p.id DESC") // JPQL
   List<Posts> findAllDesc();
 }
