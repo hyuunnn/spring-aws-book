@@ -23,7 +23,7 @@ public class SecurityConfig {
         .headers().frameOptions().disable()
         .and()
           .authorizeHttpRequests() // authorizeRequests -> authorizeHttpRequests 수정 (권한 관리 설정 시작점)
-          .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll() // antMatchers -> requestMatchers 수정 (권한 관리 대상을 지정하는 옵션 - permitAll 옵션을 사용하여 전체 열람 권한 설정)
+          .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll() // antMatchers -> requestMatchers 수정 (권한 관리 대상을 지정하는 옵션 - permitAll 옵션을 사용하여 전체 열람 권한 설정)
           .requestMatchers("/api/v1/**").hasRole(Role.USER.name()) // antMatchers -> requestMatchers 수정 (권한 관리 대상을 지정하는 옵션 - USER 권한을 가진 사람만 사용 가능)
           .anyRequest().authenticated() // 이외의 나머지 URL(anyRequest())들은 인증된 사용자들만 허용(authenticated())
         .and()
