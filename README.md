@@ -1,5 +1,7 @@
 ## spring-aws-book
 
+자세한 설명은 <a href=https://hyuunnn.github.io/2023/02/27/spring-boot-aws/">spring-boot-aws</a> 참고
+
 ### Branch - `스프링-시큐리티-적용하기-전`
 
 `Application.java` 실행
